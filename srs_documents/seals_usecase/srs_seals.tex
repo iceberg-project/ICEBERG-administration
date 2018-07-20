@@ -110,10 +110,13 @@ An early use case document is provided in [1]. The current status of the project
 provided by the use case Github repository [2].
 
 \section{Project Scope}
+\iffalse
 $<$Provide a short description of the software being specified and its purpose, 
 including relevant benefits, objectives, and goals. Relate the software to 
 corporate goals or business strategies. If a separate vision and scope document 
 is available, refer to it rather than duplicating its contents here.$>$
+\fi
+We provide a detection algorithm to extract the location of seals from high-resolution imagery.  This algorithm was developed by convolutional neural network training to detect and count seal haul-outs.   This is beneficial, as a comprehensive pack-ice seal census and monitoring will provide key information on the health and evolution of the Southern Ocean ecosystem.
 
 \section{References}
 [1]~\url{https://github.com/iceberg-project/Use-Case-Descriptions/blob/master/Seals/Use_Case_seals_Draft2_23Oct2017.docx}
@@ -126,6 +129,7 @@ is available, refer to it rather than duplicating its contents here.$>$
 \chapter{Overall Description}
 
 \section{Product Perspective}
+\iffalse
 $<$Describe the context and origin of the product being specified in this SRS.  
 For example, state whether this product is a follow-on member of a product 
 family, a replacement for certain existing systems, or a new, self-contained 
@@ -134,6 +138,8 @@ requirements of the larger system to the functionality of this software and
 identify interfaces between the two. A simple diagram that shows the major 
 components of the overall system, subsystem interconnections, and external 
 interfaces can be helpful.$>$
+\fi
+ICEBERG is a multi-disciplinary, cyberinfrastructure, integration project to (1) develop open source image classification tools tailored to high-resolution satellite imagery of the Arctic and Antarctic to be used on HPDC resources, (2) create easy-to-use interfaces to facilitate the development and testing of algorithms for application specific geoscience requirements, (3) apply these tools through four use cases that span the biological, hydrological, and geoscience needs of the polar community, (4) transfer these tools to the larger (non-polar) EarthCube community for continued community-driven development.
 
 \section{Product Functions}
 $<$Summarize the major functions the product must perform or must let the user 
@@ -144,6 +150,7 @@ related requirements and how they relate, such as a top level data flow diagram
 or object class diagram, is often effective.$>$
 
 \section{User Classes and Characteristics}
+\iffalse
 $<$Identify the various user classes that you anticipate will use this product.  
 User classes may be differentiated based on frequency of use, subset of product 
 functions used, technical expertise, security or privilege levels, educational 
@@ -151,6 +158,12 @@ level, or experience. Describe the pertinent characteristics of each user class.
 Certain requirements may pertain only to certain user classes. Distinguish the 
 most important user classes for this product from those who are less important 
 to satisfy.$>$
+\fi
+\begin{itemize}
+	\item Community users - web interface
+	\item Expert users - local command line interface
+	\item Superusers - direct XSEDE interface
+\end{itemize}
 
 \section{Operating Environment}
 $<$Describe the environment in which the software will operate, including the 
@@ -168,9 +181,14 @@ customer’s organization will be responsible for maintaining the delivered
 software).$>$
 
 \section{User Documentation}
+\iffalse
 $<$List the user documentation components (such as user manuals, on-line help, 
 and tutorials) that will be delivered along with the software. Identify any 
 known user documentation delivery formats or standards.$>$
+\fi
+Users will be provided on-line documentation and help.  Syntax, options, and error
+messages will be displayed via the web or command line interfaces.
+
 \section{Assumptions and Dependencies}
 
 $<$List any assumed factors (as opposed to known facts) that could affect the 
