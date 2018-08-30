@@ -49,7 +49,7 @@ linktoc=page                                    % only page is linked
         \vspace{1.9cm}
         for\\
         \vspace{1.9cm}
-        ICEBERG - Seals use case\\
+        ICEBERG - LandCover use case\\
         \vspace{1.9cm}
         \LARGE{Version \myversion}\\
         \vspace{1.9cm}
@@ -74,7 +74,7 @@ linktoc=page                                    % only page is linked
     \begin{tabular}{|c|c|c|c|}
         \hline
         Name & Date & Reason For Changes & Version\\\hline
-        Initial & 7/15/2018 & & 0.1\\
+        Initial & 8/30/2018 & & 0.1\\
         \hline
     \end{tabular}
 \end{center}
@@ -119,11 +119,16 @@ including relevant benefits, objectives, and goals. Relate the software to
 corporate goals or business strategies. If a separate vision and scope document 
 is available, refer to it rather than duplicating its contents here.$>$
 \fi
-We provide a detection algorithm to extract the location of seals from high-resolution imagery.  This algorithm was developed by convolutional neural network training to detect and count seal haul-outs.   This is beneficial, as a comprehensive pack-ice seal census and monitoring will provide key information on the health and evolution of the Southern Ocean ecosystem.
+LandCover is 
+a pipeline for automated processing of satellite imagery, automated detection and 
+removal of snow, ice, water, and shadows from the scene, automated atmospheric 
+characterization and removal, and automated ``stretching'' of the scenes to provide
+spatial coverage of surveyed area, reasonable estimates on atmospheric contributions, 
+and comparisons to a spectral library of known geologic materials.
 
 \section{References}
-[1]~\url{https://github.com/iceberg-project/Use-Case-Descriptions/blob/master/Seals/Use_Case_seals_Draft2_23Oct2017.docx}
-[2]~\url{https://github.com/iceberg-project/Seals}
+[1]~\url{https://github.com/iceberg-project/Use-Case-Descriptions/blob/master/LandCover/UseCase_Geology_Draft1_20171101.docx}\newline
+[2]~\url{https://github.com/iceberg-project/LandCover}
 
 % ----------------------------------------------------------------------------
 % Overall Description
@@ -141,7 +146,14 @@ identify interfaces between the two. A simple diagram that shows the major
 components of the overall system, subsystem interconnections, and external 
 interfaces can be helpful.$>$
 \fi
-ICEBERG is a multi-disciplinary, cyberinfrastructure, integration project to (1) develop open source image classification tools tailored to high-resolution satellite imagery of the Arctic and Antarctic to be used on HPDC resources, (2) create easy-to-use interfaces to facilitate the development and testing of algorithms for application specific geoscience requirements, (3) apply these tools through four use cases that span the biological, hydrological, and geoscience needs of the polar community, (4) transfer these tools to the larger (non-polar) EarthCube community for continued community-driven development.
+ICEBERG is a multi-disciplinary, cyberinfrastructure, integration project to 
+(1) develop open source image classification tools tailored to high-resolution 
+satellite imagery of the Arctic and Antarctic to be used on HPDC resources, 
+(2) create easy-to-use interfaces to facilitate the development and testing of 
+algorithms for application specific geoscience requirements, 
+(3) apply these tools through four use cases that span the biological, hydrological, 
+and geoscience needs of the polar community, 
+(4) transfer these tools to the larger (non-polar) EarthCube community for continued community-driven development.
 
 \section{Product Functions}
 \iffalse
@@ -152,12 +164,20 @@ understandable to any reader of the SRS. A picture of the major groups of
 related requirements and how they relate, such as a top level data flow diagram 
 or object class diagram, is often effective.$>$
 \fi
+
+\iffalse
 \begin{figure}[H]
  \centering
- \includegraphics[width=0.8\textwidth]{SealsExecutionArchitecture.jpg}
+ \includegraphics[width=0.8\textwidth]{LandCoverArchitecture.jpg}
 \end{figure}
-
-The main functions of the Seals pipeline are tiling, detection, counting, and output.
+\fi
+The product functions consist of a series of algorithms to calibrate multispectral 
+data from raw digital number through to spectral parameters derived from calibrated 
+surface reflectance data.  Intermediate steps include the derivation of top-of-atmosphere 
+radiance, the estimation of atmospheric contributions and their removal from the scene, 
+the calibration to surface reflectance, the removal of ``non-geological'' surfaces 
+(e.g., ice, snow, water, shadow), the parameterization of reflectance data, and the 
+``spectral unmixing'' of orbital data using a library of spectral endmembers.
 
 \section{User Classes and Characteristics}
 \iffalse
@@ -262,14 +282,13 @@ $SOFT$ dependency to a library requires as a minimum version the one depicted.
 	\begin{tabular}{|c|c|c|}
 		\hline
 		Library & Version & Type\\\hline
-		CUDA & 8.0 & $HARD$\\\hline
 		Python & 3.5 & $SOFT$\\\hline
 		matplotlib    & 2.2.2 & $SOFT$ \\\hline
 		opencv-python & 3.4.1.15 & $SOFT$ \\\hline
 		pandas        & 0.23.0 & $SOFT$ \\\hline
-		Pillow        & 5.1.0 & $SOFT$ \\\hline
-		torch         & 0.4.0 & $SOFT$ \\\hline
-		torchvision   & 0.2.1 & $SOFT$ \\
+		spectral      & 0.19 & $SOFT$ \\\hline
+		xml.etree.ElementTree      &  & $SOFT$ \\\hline
+		rasterio  &  & $SOFT$ \\\hline
 		\hline
 	\end{tabular}
 	\caption{Software Dependencies.\label{tab:software_dependencies}}
@@ -296,14 +315,18 @@ object class, functional hierarchy, or combinations of these, whatever makes the
 most logical sense for your product.$>$
 
 \section{System Feature 1}
-$<$Don’t really say “System Feature 1.” State the feature name in just a few 
-words.$>$
+Calibrate to top-of-atmosphere radiance
 
-\subsection{Description and Priority}
+%\subsection{Description and Priority}
+\subsection{Description}
+\iffalse
 $<$Provide a short description of the feature and indicate whether it is of 
 High, Medium, or Low priority. You could also include specific priority 
 component ratings, such as benefit, penalty, cost, and risk (each rated on a 
 relative scale from a low of 1 to a high of 9).$>$
+\fi
+Input multispectral data, calibrate to top-of-atmosphere radiance using parameters 
+drawn from image metadata file. 
 
 \subsection{Stimulus/Response Sequences}
 $<$List the sequences of user actions and system responses that stimulate the 
@@ -324,8 +347,57 @@ meaningful tag of some kind.$>$
 
 REQ-1:  REQ-2:
 
-\section{System Feature 2 (and so on)}
+\section{System Feature}
+Calculate surface reflectance by automatically applying an atmospheric correction algorithm
+\subsection{Description}
+\begin{enumerate}
+	\item Identify spectrally homogeneous regions with varying surface illumination 
+		and shadowing
+	\item Collect ~200 spectra from these locations, ensuring that you are only 
+		cataloging variations in brightness (due to illumination) and not variations 
+		due to variable surface composition or other chemical/physical properties
+	\item Regress a line through these data at each band relative to Band 8, deriving a 
+		Y-intercept for each regression, which predicts the radiance value for each 
+		band when completely in shadow (attributed solely to atmospheric scattering)
+	\item Subtract these Y-intercept values from each image band to calculate surface 
+		radiance (atmosphere removed) from top-of-atmosphere radiance
+\end{enumerate}
 
+\section{System Feature}
+Convert to surface reflectance
+\subsection{Description}
+Use data from uploaded tables (Earth-Sun distance, ESUN values) to calibrate from surface 
+radiance to surface reflectance
+
+\section{System Feature}
+Remove non-geological surfaces using derived spectral values (optional)
+\subsection{Description}
+\begin{enumerate}
+	\item Linearly ``unmix'' the image with a series of spectra from a given library that 
+		will include ice, snow, and shadowed and illuminated rock surfaces
+	\item Pixels meeting some threshold of non-illuminated geologic rock surfaces will 
+		be removed from the scene, leaving behind only illuminated rocky surfaces to be characterized geologically
+\end{enumerate}
+\textit{OR, a shadow removal method to be determined}
+\section{System Feature}
+Classify land cover geological composition
+\subsection{Description}
+\begin{enumerate}
+	\item Parameterize spectral data into known parameter mapping products
+		\stepcounter{enumi}
+     		\begin{enumerate}
+		\item Generate simple spectral ratios and parameter products that 
+			can be tied to known geologic and geochemical phenomena
+		\item Relative values of these parameters can be used to understand the 
+			distribution of mafic compositions, oxidative weathering, and other 
+				surface properties
+		\end{enumerate}
+	\item Linearly ``unmix'' these illuminated geological surfaces using a 
+		different endmember library, derived automatically from a library 
+		of hundreds of samples based on which library data were derived from 
+		a latitude/longitude contained within the scene, assigning each pixel
+		a percentage of specifi rock types
+\end{enumerate}
 
 % ----------------------------------------------------------------------------
 % Nonfunctional Requirements
@@ -356,7 +428,7 @@ any user identity authentication requirements. Refer to any external policies or
 regulations containing security issues that affect the product. Define any 
 security or privacy certifications that must be satisfied.$>$
 \fi
-All Digital Globe (WorldView) imagery is proprietary and cannot be released publically. 
+All Digital Globe (WorldView) imagery is proprietary and cannot be released publicly. 
 Use of imagery must be in accordance with the guidelines and requirements of the Polar 
 Geospatial Center and the NGA NextView License. 
 
