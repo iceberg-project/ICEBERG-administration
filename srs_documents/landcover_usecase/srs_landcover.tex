@@ -165,12 +165,6 @@ related requirements and how they relate, such as a top level data flow diagram
 or object class diagram, is often effective.$>$
 \fi
 
-\iffalse
-\begin{figure}[H]
- \centering
- \includegraphics[width=0.8\textwidth]{LandCoverArchitecture.jpg}
-\end{figure}
-\fi
 The product functions consist of a series of algorithms to calibrate multispectral 
 data from raw digital number through to spectral parameters derived from calibrated 
 surface reflectance data.  Intermediate steps include the derivation of top-of-atmosphere 
@@ -178,6 +172,11 @@ radiance, the estimation of atmospheric contributions and their removal from the
 the calibration to surface reflectance, the removal of ``non-geological'' surfaces 
 (e.g., ice, snow, water, shadow), the parameterization of reflectance data, and the 
 ``spectral unmixing'' of orbital data using a library of spectral endmembers.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.8\textwidth]{landcoverarch}
+\end{figure}
 
 \section{User Classes and Characteristics}
 \iffalse
@@ -314,9 +313,7 @@ prefer to organize this section by use case, mode of operation, user class,
 object class, functional hierarchy, or combinations of these, whatever makes the 
 most logical sense for your product.$>$
 
-\section{System Feature 1}
-Calibrate to top-of-atmosphere radiance
-
+\section{Calibrate to top-of-atmosphere radiance}
 %\subsection{Description and Priority}
 \subsection{Description}
 \iffalse
@@ -325,7 +322,7 @@ High, Medium, or Low priority. You could also include specific priority
 component ratings, such as benefit, penalty, cost, and risk (each rated on a 
 relative scale from a low of 1 to a high of 9).$>$
 \fi
-Input multispectral data, calibrate to top-of-atmosphere radiance using parameters 
+Input multispectral data, calibrate to top-of-atmosphere radiance using ABSCALFACTOR and EFFECTIVEBANDWIDTH parameters 
 drawn from image metadata file. 
 
 \subsection{Stimulus/Response Sequences}
@@ -347,8 +344,7 @@ meaningful tag of some kind.$>$
 
 REQ-1:  REQ-2:
 
-\section{System Feature}
-Calculate surface reflectance by automatically applying an atmospheric correction algorithm
+\section{Calculate surface reflectance by automatically applying an atmospheric correction algorithm}
 \subsection{Description}
 \begin{enumerate}
 	\item Identify spectrally homogeneous regions with varying surface illumination 
@@ -363,14 +359,12 @@ Calculate surface reflectance by automatically applying an atmospheric correctio
 		radiance (atmosphere removed) from top-of-atmosphere radiance
 \end{enumerate}
 
-\section{System Feature}
-Convert to surface reflectance
+\section{Convert to surface reflectance}
 \subsection{Description}
 Use data from uploaded tables (Earth-Sun distance, ESUN values) to calibrate from surface 
 radiance to surface reflectance
 
-\section{System Feature}
-Remove non-geological surfaces using derived spectral values (optional)
+\section{Remove non-geological surfaces using derived spectral values (optional)}
 \subsection{Description}
 \begin{enumerate}
 	\item Linearly ``unmix'' the image with a series of spectra from a given library that 
@@ -379,12 +373,11 @@ Remove non-geological surfaces using derived spectral values (optional)
 		be removed from the scene, leaving behind only illuminated rocky surfaces to be characterized geologically
 \end{enumerate}
 \textit{OR, a shadow removal method to be determined}
-\section{System Feature}
-Classify land cover geological composition
+\section{Classify land cover geological composition}
 \subsection{Description}
 \begin{enumerate}
 	\item Parameterize spectral data into known parameter mapping products
-		\stepcounter{enumi}
+		
      		\begin{enumerate}
 		\item Generate simple spectral ratios and parameter products that 
 			can be tied to known geologic and geochemical phenomena
