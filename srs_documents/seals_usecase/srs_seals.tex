@@ -261,6 +261,7 @@ Python 2.7 and 3.5 should exist in the resource.
 \chapter{External Interface Requirements}
 
 \section{User Interfaces}
+\iffalse
 $<$Describe the logical characteristics of each interface between the software 
 product and the users. This may include sample screen images, any GUI standards 
 or product family style guides that are to be followed, screen layout 
@@ -269,20 +270,41 @@ every screen, keyboard shortcuts, error message display standards, and so on.
 Define the software components for which a user interface is needed. Details of 
 the user interface design should be documented in a separate user interface 
 specification.$>$
+\fi
+
+Provide an interface where users can upload a set of images and get back a table with the Seals
+
+The CLI interface should have the arguments based on table~\ref{tab:cli_interface}
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Argument Name    & Argument Flag(s) & Argument Type & Value & Required/Optional\\\hline
+		Resource         & -r/--resource    & String           & xsede.bridges & Required\\\hline
+		Output Directory & -op              & String           & './'    & Optional\\\hline
+		Input Directory  & -ip              & String           & /home/iparask/images & Required\\\hline
+		Path to Model    & --model          & String        & model file & Optional\\
+		\hline
+	\end{tabular}
+	\caption{Command Line Interface Arguments.\label{tab:cli_interface}}
+\end{table}
+
 
 \section{Hardware Interfaces}
-%$<$Describe the logical and physical characteristics of each interface between 
-%the software product and the hardware components of the system. This may include 
-%the supported device types, the nature of the data and control interactions 
-%between the software and the hardware, and communication protocols to be 
-%used.$>$
+\iffalse
+$<$Describe the logical and physical characteristics of each interface between 
+the software product and the hardware components of the system. This may include 
+the supported device types, the nature of the data and control interactions 
+between the software and the hardware, and communication protocols to be 
+used.$>$
+\fi
 
-The software system requires High Performance Computing (HPC) resources for execution.
+The software system requires High Performance Computing (HPC) resources for execution and needs at least one GPU.
 The HPC resources should provide CPU and GPU node. Until now, PSC Bridges and SDSC Comet
 are the possible candidates.
 
 \section{Software Interfaces}
-\iffalse
 $<$Describe the connections between this product and other specific software 
 components (name and version), including databases, operating systems, tools, 
 libraries, and integrated commercial components. Identify the data items or 
@@ -293,8 +315,6 @@ Identify data that will be shared across software components. If the data
 sharing mechanism must be implemented in a specific way (for example, use of a 
 global data area in a multitasking operating system), specify this as an 
 implementation constraint.$>$
-\fi
-
 
 
 
@@ -305,6 +325,7 @@ communications protocols, electronic forms, and so on. Define any pertinent
 message formatting. Identify any communication standards that will be used, such 
 as FTP or HTTP. Specify any communication security or encryption issues, data 
 transfer rates, and synchronization mechanisms.$>$
+
 
 
 % ----------------------------------------------------------------------------
