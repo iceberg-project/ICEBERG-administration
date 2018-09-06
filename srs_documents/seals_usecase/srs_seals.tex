@@ -157,7 +157,7 @@ or object class diagram, is often effective.$>$
  \includegraphics[width=0.8\textwidth]{SealsExecutionArchitecture.jpg}
 \end{figure}
 
-The main functions of the Seals pipeline are tiling, detection, counting, and output.
+The main functions of the Seals pipeline are tiling, detection, counting, and reporting the location of seals in a set of images.
 
 \section{User Classes and Characteristics}
 \iffalse
@@ -170,15 +170,42 @@ most important user classes for this product from those who are less important
 to satisfy.$>$
 \fi
 \begin{itemize}
-	\item Community users - web interface
-	\item Expert users - local command line interface
-	\item Superusers - direct XSEDE interface
+	\item Community users - Will use a web interface to access the capabilities of ICEBERG
+	\item Expert users - Will use ICEBERG via command line interface to execute experiments and their use cases.
+	\item Developers - Are users that are able to develop additional pipelines and/or change/update existing pipelines. They will be able to use the CLI or directly the resource interfaces.
 \end{itemize}
 
 \section{Operating Environment}
+\iffalse
 $<$Describe the environment in which the software will operate, including the 
 hardware platform, operating system and versions, and any other software 
 components or applications with which it must peacefully coexist.$>$
+\fi
+The software's middleware should be able to use Unix-based Operating Systems, such as 
+Linux and MacOS. The software has library dependencies as listed in Table~\ref{tab:software_dependencies}.
+$HARD$ dependency to a library is restricted to the version shown.
+$SOFT$ dependency to a library requires as a minimum version the one depicted.
+
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Library & Version & Executable & Type\\\hline
+		CUDA          & 8.0      & predict\_sealnet & $HARD$\\\hline
+		Python        & 3.5      & All              & $SOFT$\\\hline
+		matplotlib    & 2.2.2    & Verify           & $SOFT$ \\\hline
+		opencv-python & 3.4.1.15 & tile\_raster     & $SOFT$ \\\hline
+		pandas        & 0.23.0   & predict\_sealnet & $SOFT$ \\\hline
+		Pillow        & 5.1.0    & predict\_sealnet & $SOFT$ \\\hline
+		torch         & 0.4.0    & predict\_sealnet & $SOFT$ \\\hline
+		torchvision   & 0.2.1    & predict\_sealnet & $SOFT$ \\\hline
+		EnTK          & 0.7      & entk\_script     & $SOFT$ \\\hline
+		\hline
+	\end{tabular}
+	\caption{Software Dependencies.\label{tab:software_dependencies}}
+\end{table}
+
 
 \section{Design and Implementation Constraints}
 $<$Describe any items or issues that will limit the options available to the 
@@ -251,29 +278,7 @@ global data area in a multitasking operating system), specify this as an
 implementation constraint.$>$
 \fi
 
-The software's middleware should be able to use Unix-based Operating Systems, such as 
-Linux and MacOS. The software has library dependencies as listed in Table~\ref{tab:software_dependencies}.
-$HARD$ dependency to a library is restricted to the version shown.
-$SOFT$ dependency to a library requires as a minimum version the one depicted.
 
-
-\begin{table}
-	\centering
-	\begin{tabular}{|c|c|c|}
-		\hline
-		Library & Version & Type\\\hline
-		CUDA & 8.0 & $HARD$\\\hline
-		Python & 3.5 & $SOFT$\\\hline
-		matplotlib    & 2.2.2 & $SOFT$ \\\hline
-		opencv-python & 3.4.1.15 & $SOFT$ \\\hline
-		pandas        & 0.23.0 & $SOFT$ \\\hline
-		Pillow        & 5.1.0 & $SOFT$ \\\hline
-		torch         & 0.4.0 & $SOFT$ \\\hline
-		torchvision   & 0.2.1 & $SOFT$ \\
-		\hline
-	\end{tabular}
-	\caption{Software Dependencies.\label{tab:software_dependencies}}
-\end{table}
 
 
 \section{Communications Interfaces}
