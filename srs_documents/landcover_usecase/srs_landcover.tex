@@ -313,6 +313,30 @@ prefer to organize this section by use case, mode of operation, user class,
 object class, functional hierarchy, or combinations of these, whatever makes the 
 most logical sense for your product.$>$
 
+\section{Selecting Parts of the Image for Atmospheric Correction}
+
+\subsection{Description}
+As the image is partitioned, each partition is checked whether or not it will be used for the
+Atmospheric correction. If yes, it remains to the filesystem, otherwise it is discarded and removed.
+
+\subsection{Stimulus/Response Sequences}
+The stimulus is the existence of a partition. The response sequence is if the partition will be kept or not.
+
+\subsection{Functional Requirements}
+$<$Itemize the detailed functional requirements associated with this feature.  
+These are the software capabilities that must be present in order for the user 
+to carry out the services provided by the feature, or to execute the use case.  
+Include how the product should respond to anticipated error conditions or 
+invalid inputs. Requirements should be concise, complete, unambiguous, 
+verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
+information is not yet available.$>$
+
+\begin{itemize}
+	\item REQ 1:
+\end{itemize}
+
+
+\iffalse
 \section{Calibrate to top-of-atmosphere radiance}
 %\subsection{Description and Priority}
 \subsection{Description}
@@ -451,6 +475,7 @@ $<$Each requirement should be uniquely identified with a sequence number or a
 meaningful tag of some kind.$>$
 
 REQ-1:  REQ-2:
+\fi
 % ----------------------------------------------------------------------------
 % Nonfunctional Requirements
 % ----------------------------------------------------------------------------
