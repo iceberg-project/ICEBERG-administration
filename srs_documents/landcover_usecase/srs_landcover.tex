@@ -320,7 +320,7 @@ As the image is partitioned, each partition is checked whether or not it will be
 Atmospheric correction. If yes, it remains to the filesystem, otherwise it is discarded and removed.
 
 \subsection{Stimulus/Response Sequences}
-The stimulus is the existence of a partition. The response sequence is if the partition will be kept or not.
+The stimulus is a set of partitions. The response sequence is a set of accepted partitions
 
 \subsection{Functional Requirements}
 $<$Itemize the detailed functional requirements associated with this feature.  
@@ -332,9 +332,10 @@ verifiable, and necessary. Use “TBD” as a placeholder to indicate when neces
 information is not yet available.$>$
 
 \begin{itemize}
-	\item REQ 1:
+	\item REQ 1: This stage can get a configurable number of partitions ( 1 /~ 10000)
+	\item REQ 2: Read/Write data from/to local filesystem of the node.
+	\item REQ 3: Memory usage per task should be below 4096 MBs.
 \end{itemize}
-
 
 \iffalse
 \section{Calibrate to top-of-atmosphere radiance}
