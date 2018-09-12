@@ -15,19 +15,23 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{paralist}
+
 
 \hypersetup{
-    bookmarks=false,                                % show bookmarks bar?
-    pdftitle={Software Requirement Specification},  % title
-    pdfauthor={Jean-Philippe Eisenbarth},           % author
-    pdfsubject={TeX and LaTeX},                     % subject of the document
-    pdfkeywords={TeX, LaTeX, graphics, images},     % list of keywords
-    colorlinks=true,                                % false: boxed links; true: colored links
-    linkcolor=blue,                                 % color of internal links
-    citecolor=black,                                % color of links to bibliography
-    filecolor=black,                                % color of file links
-    urlcolor=purple,                                % color of external links
-    linktoc=page                                    % only page is linked
+	bookmarks=false,                                % show bookmarks bar?
+	pdftitle={Software Requirement Specification},  % title
+	pdfauthor={Jean-Philippe Eisenbarth},           % author
+	pdfsubject={TeX and LaTeX},                     % subject of the document
+	pdfkeywords={TeX, LaTeX, graphics, images},     % list of keywords
+	colorlinks=true,                                % false: boxed links; true: colored links
+	linkcolor=blue,                                 % color of internal links
+	citecolor=black,                                % color of links to bibliography
+	filecolor=black,                                % color of file links
+	urlcolor=black,                                % color of external links
+	linktoc=page                                    % only page is linked
 }
 
 \def\myversion{1.0 }
@@ -68,15 +72,11 @@
 \chapter*{Revision History}
 
 \begin{center}
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-        Name & Date & Reason For Changes & Version\\
-        \hline
-        21 & 22 & 23 & 24\\
-        \hline
-        31 & 32 & 33 & 34\\
-        \hline
-    \end{tabular}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Name & Date & Reason For Changes & Version\\\hline
+		IP & 9/12/2018/ & initial & 0.1\\\hline
+	\end{tabular}
 \end{center}
 
 
@@ -86,25 +86,49 @@
 \chapter{Introduction}
 
 \section{Purpose}
+\iffalse
 $<$Identify the product whose software requirements are specified in this 
 document, including the revision or release number. Describe the scope of the 
 product that is covered by this SRS, particularly if this SRS describes only 
 part of the system or a single subsystem.$>$
+\fi
+
+The purpose of this document is to capture the requirements of the ICEBERG: Penguins
+Use Case. It will include functional, non-functional and User Interface requirements.
+It will be used as the reference document between the RADICAL Team and the Stony 
+Brook team for the Penguins use case development.
 
 \section{Document Conventions}
+\iffalse
 $<$Describe any standards or typographical conventions that were followed when 
 writing this SRS, such as fonts or highlighting that have special significance.  
 For example, state whether priorities  for higher-level requirements are assumed 
 to be inherited by detailed requirements, or whether every requirement statement 
 is to have its own priority.$>$
+\fi
+
+The requested features are listed in section 4 and the non-functional requirements are
+listed in section 5. Each of these requirements have a priority from the set {HIGH,
+MEDIUM, LOW}. Based on the number of requirements and their priority, a timeline
+will be created with each requirement and its expected time-to-completion.
+
 
 \section{Intended Audience and Reading Suggestions}
+\iffalse
 $<$Describe the different types of reader that the document is intended for, 
 such as developers, project managers, marketing staff, users, testers, and 
 documentation writers. Describe what the rest of this SRS contains and how it is 
 organized. Suggest a sequence for reading the document, beginning with the 
 overview sections and proceeding through the sections that are most pertinent to 
 each reader type.$>$
+\fi
+
+The document is edited and iterated between users and developers. It is intended
+to provide the developers as well as the project managers a complete understanding 
+of the requirements as they are expected by the users.
+
+An early use case document was not provided. The current status of the project 
+is provided by the use case Github repository [2].
 
 \section{Project Scope}
 $<$Provide a short description of the software being specified and its purpose, 
@@ -113,11 +137,7 @@ corporate goals or business strategies. If a separate vision and scope document
 is available, refer to it rather than duplicating its contents here.$>$
 
 \section{References}
-$<$List any other documents or Web addresses to which this SRS refers. These may 
-include user interface style guides, contracts, standards, system requirements 
-specifications, use case documents, or a vision and scope document. Provide 
-enough information so that the reader could access a copy of each reference, 
-including title, author, version number, date, and source or location.$>$
+[2]~\url{https://github.com/iceberg-project/Penguins}
 
 
 % ----------------------------------------------------------------------------
@@ -126,6 +146,7 @@ including title, author, version number, date, and source or location.$>$
 \chapter{Overall Description}
 
 \section{Product Perspective}
+\iffalse
 $<$Describe the context and origin of the product being specified in this SRS.  
 For example, state whether this product is a follow-on member of a product 
 family, a replacement for certain existing systems, or a new, self-contained 
@@ -134,6 +155,18 @@ requirements of the larger system to the functionality of this software and
 identify interfaces between the two. A simple diagram that shows the major 
 components of the overall system, subsystem interconnections, and external 
 interfaces can be helpful.$>$
+\fi
+ICEBERG is a multi-disciplinary, cyberinfrastructure, integration project to 
+\begin{inparaenum}[(1)]
+	\item develop open source image classification tools tailored to high-resolution 
+	satellite imagery of the Arctic and Antarctic to be used on HPDC resources,
+	\item create easy-to-use interfaces to facilitate the development and testing 
+	of algorithms for application specific geoscience requirements,
+	\item apply these tools through four use cases that span the biological, 
+	hydrological, and geoscience needs of the polar community,
+	\item transfer these tools to the larger (non-polar) EarthCube community for 
+	continued community-driven development.
+\end{inparaenum}
 
 \section{Product Functions}
 $<$Summarize the major functions the product must perform or must let the user 
@@ -144,6 +177,7 @@ related requirements and how they relate, such as a top level data flow diagram
 or object class diagram, is often effective.$>$
 
 \section{User Classes and Characteristics}
+\iffalse
 $<$Identify the various user classes that you anticipate will use this product.  
 User classes may be differentiated based on frequency of use, subset of product 
 functions used, technical expertise, security or privilege levels, educational 
@@ -151,13 +185,48 @@ level, or experience. Describe the pertinent characteristics of each user class.
 Certain requirements may pertain only to certain user classes. Distinguish the 
 most important user classes for this product from those who are less important 
 to satisfy.$>$
+\fi
+\begin{itemize}
+	\item Community users - Will use a web interface to access the capabilities
+	of ICEBERG
+	\item Expert users - Will use ICEBERG via command line interface to execute 
+	experiments and their use cases.
+	\item Developers - Are users that are able to develop additional pipelines 
+	and/or change/update existing pipelines. They will be able to use the CLI or 
+	directly the resource interfaces.
+\end{itemize}
 
 \section{Operating Environment}
+\iffalse
 $<$Describe the environment in which the software will operate, including the 
 hardware platform, operating system and versions, and any other software 
 components or applications with which it must peacefully coexist.$>$
+\fi
+The software's middleware should be able to use Unix-based Operating Systems, such 
+as Linux and MacOS. The software has library dependencies as listed in 
+Table~\ref{tab:software_dependencies}. $HARD$ dependency to a library is restricted 
+to the version shown. $SOFT$ dependency to a library requires as a minimum version 
+the one depicted.
+
+The Command Line Interface should be used from a Virtual Machine that is in the 
+Cloud and has constant Internet connection.
+
+The Web interface should be hosted on resources with constant operation.
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Library & Version & Executable & Type\\\hline
+		Python        & 3.5      & All              & $SOFT$\\\hline
+		EnTK          & 0.7      & entk\_script     & $SOFT$ \\\hline
+		\hline
+	\end{tabular}
+	\caption{Software Dependencies.\label{tab:software_dependencies}}
+\end{table}
 
 \section{Design and Implementation Constraints}
+\iffalse
 $<$Describe any items or issues that will limit the options available to the 
 developers. These might include: corporate or regulatory policies; hardware 
 limitations (timing requirements, memory requirements); interfaces to other 
@@ -166,13 +235,28 @@ operations; language requirements; communications protocols; security
 considerations; design conventions or programming standards (for example, if the 
 customer’s organization will be responsible for maintaining the delivered 
 software).$>$
+\fi
+
+Access to the VM should be through SSH. The web interface should be under HTTPS 
+protocol.
+
+Users should have their image data uploaded to the resources via a secure data 
+transfer system, like sftp/scp.
+
+Users should not execute from the login nodes, unless otherwise specified explicitly 
+by the resource documentation.
 
 \section{User Documentation}
+\iffalse
 $<$List the user documentation components (such as user manuals, on-line help, 
 and tutorials) that will be delivered along with the software. Identify any 
 known user documentation delivery formats or standards.$>$
-\section{Assumptions and Dependencies}
+\fi
+Users will be provided on-line documentation and help.  Syntax, options, and error
+messages will be displayed via the web or command line interfaces.
 
+\section{Assumptions and Dependencies}
+\iffalse
 $<$List any assumed factors (as opposed to known facts) that could affect the 
 requirements stated in the SRS. These could include third-party or commercial 
 components that you plan to use, issues around the development or operating 
@@ -181,6 +265,10 @@ are incorrect, are not shared, or change. Also identify any dependencies the
 project has on external factors, such as software components that you intend to 
 reuse from another project, unless they are already documented elsewhere (for 
 example, in the vision and scope document or the project plan).$>$
+\fi
+
+OMPI is installed and provided via a module for the launch method of RP. Python 2.7 
+and 3.5 should exist in the resource.
 
 
 % ----------------------------------------------------------------------------
@@ -189,6 +277,7 @@ example, in the vision and scope document or the project plan).$>$
 \chapter{External Interface Requirements}
 
 \section{User Interfaces}
+\iffalse
 $<$Describe the logical characteristics of each interface between the software 
 product and the users. This may include sample screen images, any GUI standards 
 or product family style guides that are to be followed, screen layout 
@@ -197,13 +286,39 @@ every screen, keyboard shortcuts, error message display standards, and so on.
 Define the software components for which a user interface is needed. Details of 
 the user interface design should be documented in a separate user interface 
 specification.$>$
+\fi
+
+Provide an interface where users can upload a set of images and get back a table 
+with the penguins.
+
+The CLI interface should have the arguments based on table~\ref{tab:cli_interface}
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|p{2.5cm}|p{2.2cm}|p{1.8cm}|p{4cm}|p{2cm}|}
+		\hline
+		Argument Name    & Argument Flag(s) & Argument Type & Value & Required/ Optional\\\hline
+		Resource         & -r/--resource    & String        & xsede.bridges & Required\\\hline
+		Output Directory & -op              & String        & './'    & Optional\\\hline
+		Input Directory  & -ip              & String        & /home/iparask/images & Required\\
+		\hline
+	\end{tabular}
+	\caption{Command Line Interface Arguments.\label{tab:cli_interface}}
+\end{table}
+
 
 \section{Hardware Interfaces}
+\iffalse
 $<$Describe the logical and physical characteristics of each interface between 
 the software product and the hardware components of the system. This may include 
 the supported device types, the nature of the data and control interactions 
 between the software and the hardware, and communication protocols to be 
 used.$>$
+\fi
+
+The software system requires High Performance Computing (HPC) resources for execution 
+and needs at least one GPU. The HPC resources should provide CPU and GPU node. 
+Until now, PSC Bridges and SDSC Comet are the possible candidates.
 
 \section{Software Interfaces}
 $<$Describe the connections between this product and other specific software 
