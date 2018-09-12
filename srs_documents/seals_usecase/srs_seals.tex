@@ -17,6 +17,8 @@
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{paralist}
+
 
 \hypersetup{
     bookmarks=false,                                % show bookmarks bar?
@@ -74,8 +76,8 @@ linktoc=page                                    % only page is linked
     \begin{tabular}{|c|c|c|c|}
         \hline
         Name & Date & Reason For Changes & Version\\\hline
-        Initial & 7/15/2018 & & 0.1\\
-        \hline
+        Initial & 7/15/2018 & & 0.1\\\hline
+        IP & 9/12/2018/ & Added Feature 1 & 0.2\\\hline
     \end{tabular}
 \end{center}
 
@@ -109,8 +111,8 @@ The document is edited and iterated between users and developers. It is intended
 to provide the developers as well as the project managers a complete understanding 
 of the requirements as they are expected by the users.
 
-An early use case document is provided in [1]. The current status of the project is
-provided by the use case Github repository [2].
+An early use case document is provided in [1]. The current status of the project 
+is provided by the use case Github repository [2].
 
 \section{Project Scope}
 \iffalse
@@ -119,7 +121,11 @@ including relevant benefits, objectives, and goals. Relate the software to
 corporate goals or business strategies. If a separate vision and scope document 
 is available, refer to it rather than duplicating its contents here.$>$
 \fi
-We provide a detection algorithm to extract the location of seals from high-resolution imagery.  This algorithm was developed by convolutional neural network training to detect and count seal haul-outs.   This is beneficial, as a comprehensive pack-ice seal census and monitoring will provide key information on the health and evolution of the Southern Ocean ecosystem.
+We provide a detection algorithm to extract the location of seals from high-resolution 
+imagery. This algorithm was developed by convolutional neural network training to 
+detect and count seal haul-outs. This is beneficial, as a comprehensive pack-ice 
+seal census and monitoring will provide key information on the health and evolution 
+of the Southern Ocean ecosystem.
 
 \section{References}
 [1]~\url{https://github.com/iceberg-project/Use-Case-Descriptions/blob/master/Seals/Use_Case_seals_Draft2_23Oct2017.docx}
@@ -141,7 +147,17 @@ identify interfaces between the two. A simple diagram that shows the major
 components of the overall system, subsystem interconnections, and external 
 interfaces can be helpful.$>$
 \fi
-ICEBERG is a multi-disciplinary, cyberinfrastructure, integration project to (1) develop open source image classification tools tailored to high-resolution satellite imagery of the Arctic and Antarctic to be used on HPDC resources, (2) create easy-to-use interfaces to facilitate the development and testing of algorithms for application specific geoscience requirements, (3) apply these tools through four use cases that span the biological, hydrological, and geoscience needs of the polar community, (4) transfer these tools to the larger (non-polar) EarthCube community for continued community-driven development.
+ICEBERG is a multi-disciplinary, cyberinfrastructure, integration project to 
+\begin{inparaenum}[(1)]
+    \item develop open source image classification tools tailored to high-resolution 
+	satellite imagery of the Arctic and Antarctic to be used on HPDC resources,
+	\item create easy-to-use interfaces to facilitate the development and testing 
+	of algorithms for application specific geoscience requirements,
+	\item apply these tools through four use cases that span the biological, 
+	hydrological, and geoscience needs of the polar community,
+	\item transfer these tools to the larger (non-polar) EarthCube community for 
+	continued community-driven development.
+\end{inparaenum}
 
 \section{Product Functions}
 \iffalse
@@ -157,7 +173,8 @@ or object class diagram, is often effective.$>$
  \includegraphics[width=0.8\textwidth]{SealsExecutionArchitecture.jpg}
 \end{figure}
 
-The main functions of the Seals pipeline are tiling, detection, counting, and reporting the location of seals in a set of images.
+The main functions of the Seals pipeline are tiling, detection, counting, and reporting 
+the location of seals in a set of images.
 
 \section{User Classes and Characteristics}
 \iffalse
@@ -170,9 +187,13 @@ most important user classes for this product from those who are less important
 to satisfy.$>$
 \fi
 \begin{itemize}
-	\item Community users - Will use a web interface to access the capabilities of ICEBERG
-	\item Expert users - Will use ICEBERG via command line interface to execute experiments and their use cases.
-	\item Developers - Are users that are able to develop additional pipelines and/or change/update existing pipelines. They will be able to use the CLI or directly the resource interfaces.
+	\item Community users - Will use a web interface to access the capabilities
+	of ICEBERG
+	\item Expert users - Will use ICEBERG via command line interface to execute 
+	experiments and their use cases.
+	\item Developers - Are users that are able to develop additional pipelines 
+	and/or change/update existing pipelines. They will be able to use the CLI or 
+	directly the resource interfaces.
 \end{itemize}
 
 \section{Operating Environment}
@@ -181,13 +202,14 @@ $<$Describe the environment in which the software will operate, including the
 hardware platform, operating system and versions, and any other software 
 components or applications with which it must peacefully coexist.$>$
 \fi
-The software's middleware should be able to use Unix-based Operating Systems, such as 
-Linux and MacOS. The software has library dependencies as listed in Table~\ref{tab:software_dependencies}.
-$HARD$ dependency to a library is restricted to the version shown.
-$SOFT$ dependency to a library requires as a minimum version the one depicted.
+The software's middleware should be able to use Unix-based Operating Systems, such 
+as Linux and MacOS. The software has library dependencies as listed in 
+Table~\ref{tab:software_dependencies}. $HARD$ dependency to a library is restricted 
+to the version shown. $SOFT$ dependency to a library requires as a minimum version 
+the one depicted.
 
-The Command Line Interface should be used from a Virtual Machine that is in the Cloud 
-and has constant Internet connection.
+The Command Line Interface should be used from a Virtual Machine that is in the 
+Cloud and has constant Internet connection.
 
 The Web interface should be hosted on resources with constant operation.
 
@@ -223,12 +245,14 @@ customer’s organization will be responsible for maintaining the delivered
 software).$>$
 \fi
 
-Access to the VM should be through SSH. The web interface should be under HTTPS protocol.
+Access to the VM should be through SSH. The web interface should be under HTTPS 
+protocol.
 
-Users should have their image data uploaded to the resources via a secure data transfer system,
-like sftp/scp.
+Users should have their image data uploaded to the resources via a secure data 
+transfer system, like sftp/scp.
 
-Users should not execute from the login nodes, unless otherwise specified explicitly by the resource documentation.
+Users should not execute from the login nodes, unless otherwise specified explicitly 
+by the resource documentation.
 
 \section{User Documentation}
 \iffalse
@@ -252,8 +276,8 @@ example, in the vision and scope document or the project plan).$>$
 \fi
 
 CUDA v8.0 is assumed to be preinstalled on the resource and provided via a module.
-OMPI is installed and provided via a module for the launch method of RP.
-Python 2.7 and 3.5 should exist in the resource.
+OMPI is installed and provided via a module for the launch method of RP. Python 2.7 
+and 3.5 should exist in the resource.
 
 % ----------------------------------------------------------------------------
 % Interface Requirements
@@ -272,18 +296,19 @@ the user interface design should be documented in a separate user interface
 specification.$>$
 \fi
 
-Provide an interface where users can upload a set of images and get back a table with the Seals
+Provide an interface where users can upload a set of images and get back a table 
+with the Seals.
 
 The CLI interface should have the arguments based on table~\ref{tab:cli_interface}
 
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{|c|c|c|c|c|}
+	\begin{tabular}{|p{2.5cm}|p{2.2cm}|p{1.8cm}|p{4cm}|p{2cm}|}
 		\hline
-		Argument Name    & Argument Flag(s) & Argument Type & Value & Required/Optional\\\hline
-		Resource         & -r/--resource    & String           & xsede.bridges & Required\\\hline
-		Output Directory & -op              & String           & './'    & Optional\\\hline
-		Input Directory  & -ip              & String           & /home/iparask/images & Required\\\hline
+		Argument Name    & Argument Flag(s) & Argument Type & Value & Required/ Optional\\\hline
+		Resource         & -r/--resource    & String        & xsede.bridges & Required\\\hline
+		Output Directory & -op              & String        & './'    & Optional\\\hline
+		Input Directory  & -ip              & String        & /home/iparask/images & Required\\\hline
 		Path to Model    & --model          & String        & model file & Optional\\
 		\hline
 	\end{tabular}
@@ -300,9 +325,9 @@ between the software and the hardware, and communication protocols to be
 used.$>$
 \fi
 
-The software system requires High Performance Computing (HPC) resources for execution and needs at least one GPU.
-The HPC resources should provide CPU and GPU node. Until now, PSC Bridges and SDSC Comet
-are the possible candidates.
+The software system requires High Performance Computing (HPC) resources for execution 
+and needs at least one GPU. The HPC resources should provide CPU and GPU node. 
+Until now, PSC Bridges and SDSC Comet are the possible candidates.
 
 \section{Software Interfaces}
 $<$Describe the connections between this product and other specific software 
@@ -317,7 +342,6 @@ global data area in a multitasking operating system), specify this as an
 implementation constraint.$>$
 
 
-
 \section{Communications Interfaces}
 $<$Describe the requirements associated with any communications functions 
 required by this product, including e-mail, web browser, network server 
@@ -325,8 +349,6 @@ communications protocols, electronic forms, and so on. Define any pertinent
 message formatting. Identify any communication standards that will be used, such 
 as FTP or HTTP. Specify any communication security or encryption issues, data 
 transfer rates, and synchronization mechanisms.$>$
-
-
 
 % ----------------------------------------------------------------------------
 % Functional Requirements
@@ -338,20 +360,33 @@ prefer to organize this section by use case, mode of operation, user class,
 object class, functional hierarchy, or combinations of these, whatever makes the 
 most logical sense for your product.$>$
 
-\section{System Feature 1}
+\section{Analyzing images in bulk}
+\iffalse
 $<$Don’t really say “System Feature 1.” State the feature name in just a few 
 words.$>$
-
+\fi
 \subsection{Description and Priority}
+\iffalse
 $<$Provide a short description of the feature and indicate whether it is of 
 High, Medium, or Low priority. You could also include specific priority 
 component ratings, such as benefit, penalty, cost, and risk (each rated on a 
 relative scale from a low of 1 to a high of 9).$>$
+\fi
+
+The Seals component should take as an input a set of images. These images will be
+organized in a single folder. Each analysis is independent of each other.
+
+Priority: 9
 
 \subsection{Stimulus/Response Sequences}
+\iffalse
 $<$List the sequences of user actions and system responses that stimulate the 
 behavior defined for this feature. These will correspond to the dialog elements 
 associated with use cases.$>$
+\fi
+
+The stimulus of this feature will be the path to a folder where all the images 
+will exist. The response sequence is a table with the number of Seals per image.
 
 \subsection{Functional Requirements}
 $<$Itemize the detailed functional requirements associated with this feature.  
@@ -365,7 +400,10 @@ information is not yet available.$>$
 $<$Each requirement should be uniquely identified with a sequence number or a 
 meaningful tag of some kind.$>$
 
-REQ-1:  REQ-2:
+REQ-1: Identify the individual images that exist in a single folder
+REQ-2: Each image should have an individual output file
+REQ-3: Provide an agregated output file for all images with two columns: Image 
+filename, number of seals
 
 \section{System Feature 2 (and so on)}
 

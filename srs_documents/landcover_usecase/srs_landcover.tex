@@ -17,6 +17,7 @@
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{paralist}
 
 \hypersetup{
     bookmarks=false,                                % show bookmarks bar?
@@ -74,8 +75,8 @@ linktoc=page                                    % only page is linked
     \begin{tabular}{|c|c|c|c|}
         \hline
         Name & Date & Reason For Changes & Version\\\hline
-        Initial & 8/30/2018 & & 0.1\\
-        \hline
+        Initial & 8/30/2018 & & 0.1\\\hline
+        IP & 9/12/2018 & Added common section throughout the project & 0.2\\\hline
     \end{tabular}
 \end{center}
 
@@ -119,12 +120,12 @@ including relevant benefits, objectives, and goals. Relate the software to
 corporate goals or business strategies. If a separate vision and scope document 
 is available, refer to it rather than duplicating its contents here.$>$
 \fi
-LandCover is 
-a pipeline for automated processing of satellite imagery, automated detection and 
-removal of snow, ice, water, and shadows from the scene, automated atmospheric 
-characterization and removal, and automated ``stretching'' of the scenes to provide
-spatial coverage of surveyed area, reasonable estimates on atmospheric contributions, 
-and comparisons to a spectral library of known geologic materials.
+LandCover is a pipeline for automated processing of satellite imagery, automated 
+detection and removal of snow, ice, water, and shadows from the scene, automated 
+atmospheric characterization and removal, and automated ``stretching'' of the 
+scenes to provide spatial coverage of surveyed area, reasonable estimates on 
+atmospheric contributions, and comparisons to a spectral library of known geologic 
+materials.
 
 \section{References}
 [1]~\url{https://github.com/iceberg-project/Use-Case-Descriptions/blob/master/LandCover/UseCase_Geology_Draft1_20171101.docx}\newline
@@ -147,14 +148,16 @@ components of the overall system, subsystem interconnections, and external
 interfaces can be helpful.$>$
 \fi
 ICEBERG is a multi-disciplinary, cyberinfrastructure, integration project to 
-(1) develop open source image classification tools tailored to high-resolution 
-satellite imagery of the Arctic and Antarctic to be used on HPDC resources, 
-(2) create easy-to-use interfaces to facilitate the development and testing of 
-algorithms for application specific geoscience requirements, 
-(3) apply these tools through four use cases that span the biological, hydrological, 
-and geoscience needs of the polar community, 
-(4) transfer these tools to the larger (non-polar) EarthCube community for continued community-driven development.
-
+\begin{inparaenum}[(1)]
+	\item develop open source image classification tools tailored to high-resolution 
+	satellite imagery of the Arctic and Antarctic to be used on HPDC resources,
+	\item create easy-to-use interfaces to facilitate the development and testing 
+	of algorithms for application specific geoscience requirements,
+	\item apply these tools through four use cases that span the biological, 
+	hydrological, and geoscience needs of the polar community,
+	\item transfer these tools to the larger (non-polar) EarthCube community for 
+	continued community-driven development.
+\end{inparaenum}
 \section{Product Functions}
 \iffalse
 $<$Summarize the major functions the product must perform or must let the user 
@@ -189,17 +192,50 @@ most important user classes for this product from those who are less important
 to satisfy.$>$
 \fi
 \begin{itemize}
-	\item Community users - web interface
-	\item Expert users - local command line interface
-	\item Superusers - direct XSEDE interface
+	\item Community users - Will use a web interface to access the capabilities
+	of ICEBERG
+	\item Expert users - Will use ICEBERG via command line interface to execute 
+	experiments and their use cases.
+	\item Developers - Are users that are able to develop additional pipelines 
+	and/or change/update existing pipelines. They will be able to use the CLI or 
+	directly the resource interfaces.
 \end{itemize}
 
 \section{Operating Environment}
+\iffalse
 $<$Describe the environment in which the software will operate, including the 
 hardware platform, operating system and versions, and any other software 
 components or applications with which it must peacefully coexist.$>$
+\fi
+The software's middleware should be able to use Unix-based Operating Systems, such 
+as Linux and MacOS. The software has library dependencies as listed in 
+Table~\ref{tab:software_dependencies}. $HARD$ dependency to a library is restricted 
+to the version shown. $SOFT$ dependency to a library requires as a minimum version 
+the one depicted.
+
+The Command Line Interface should be used from a Virtual Machine that is in the 
+Cloud and has constant Internet connection.
+
+The Web interface should be hosted on resources with constant operation.
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Library & Version & Executable & Type\\\hline
+		Python        & 2.7+     & All              & $SOFT$\\\hline
+		GDSAL         & 1.11     & landcover        & $SOFT$ \\\hline
+		matplotlib    & 2.2.2    & landcover           & $SOFT$ \\\hline
+		Pillow        & 5.1.0    & landcover & $SOFT$ \\\hline
+		rasterio      & Any      & landcover & $SOFT$ \\\hline
+		EnTK          & 0.7      & entk\_script     & $SOFT$ \\\hline
+		\hline
+	\end{tabular}
+	\caption{Software Dependencies.\label{tab:software_dependencies}}
+\end{table}
 
 \section{Design and Implementation Constraints}
+\iffalse
 $<$Describe any items or issues that will limit the options available to the 
 developers. These might include: corporate or regulatory policies; hardware 
 limitations (timing requirements, memory requirements); interfaces to other 
@@ -208,6 +244,17 @@ operations; language requirements; communications protocols; security
 considerations; design conventions or programming standards (for example, if the 
 customer’s organization will be responsible for maintaining the delivered 
 software).$>$
+\fi
+
+Access to the VM should be through SSH. The web interface should be under HTTPS 
+protocol.
+
+Users should have their image data uploaded to the resources via a secure data 
+transfer system, like sftp/scp.
+
+Users should not execute from the login nodes, unless otherwise specified explicitly 
+by the resource documentation.
+
 
 \section{User Documentation}
 \iffalse
@@ -219,7 +266,7 @@ Users will be provided on-line documentation and help.  Syntax, options, and err
 messages will be displayed via the web or command line interfaces.
 
 \section{Assumptions and Dependencies}
-
+\iffalse
 $<$List any assumed factors (as opposed to known facts) that could affect the 
 requirements stated in the SRS. These could include third-party or commercial 
 components that you plan to use, issues around the development or operating 
@@ -228,7 +275,11 @@ are incorrect, are not shared, or change. Also identify any dependencies the
 project has on external factors, such as software components that you intend to 
 reuse from another project, unless they are already documented elsewhere (for 
 example, in the vision and scope document or the project plan).$>$
+\fi
 
+Rasterio is assumed to be preinstalled on the resource and provided via a virtual
+environment. OMPI is installed and provided via a module for the launch method of 
+RP. Python 2.7 should exist in the resource.
 
 % ----------------------------------------------------------------------------
 % Interface Requirements
@@ -245,6 +296,23 @@ Define the software components for which a user interface is needed. Details of
 the user interface design should be documented in a separate user interface 
 specification.$>$
 
+Provide an interface where users can upload a set of images and get a set of images
+classified by landcove
+
+The CLI interface should have the arguments based on table~\ref{tab:cli_interface}
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|p{2.5cm}|p{2.2cm}|p{1.8cm}|p{4cm}|p{2cm}|}
+		\hline
+		Argument Name    & Argument Flag(s) & Argument Type & Value & Required/ Optional\\\hline
+		Resource         & -r/--resource    & String        & xsede.bridges & Required\\\hline
+		Output Directory & -op              & String        & './'    & Optional\\\hline
+		Input Directory  & -ip              & String        & /home/iparask/images & Required\\\hline
+	\end{tabular}
+	\caption{Command Line Interface Arguments.\label{tab:cli_interface}}
+\end{table}
+
 \section{Hardware Interfaces}
 %$<$Describe the logical and physical characteristics of each interface between 
 %the software product and the hardware components of the system. This may include 
@@ -253,8 +321,7 @@ specification.$>$
 %used.$>$
 
 The software system requires High Performance Computing (HPC) resources for execution.
-The HPC resources should provide CPU and GPU node. Until now, PSC Bridges and SDSC Comet
-are the possible candidates.
+The HPC resources should provide CPU node. Any XSEDE resource is a good candicate.
 
 \section{Software Interfaces}
 \iffalse
@@ -269,30 +336,6 @@ sharing mechanism must be implemented in a specific way (for example, use of a
 global data area in a multitasking operating system), specify this as an 
 implementation constraint.$>$
 \fi
-
-The software's middleware should be able to use Unix-based Operating Systems, such as 
-Linux and MacOS. The software has library dependencies as listed in Table~\ref{tab:software_dependencies}.
-$HARD$ dependency to a library is restricted to the version shown.
-$SOFT$ dependency to a library requires as a minimum version the one depicted.
-
-
-\begin{table}
-	\centering
-	\begin{tabular}{|c|c|c|}
-		\hline
-		Library & Version & Type\\\hline
-		Python & 3.5 & $SOFT$\\\hline
-		matplotlib    & 2.2.2 & $SOFT$ \\\hline
-		opencv-python & 3.4.1.15 & $SOFT$ \\\hline
-		pandas        & 0.23.0 & $SOFT$ \\\hline
-		spectral      & 0.19 & $SOFT$ \\\hline
-		xml.etree.ElementTree      &  & $SOFT$ \\\hline
-		rasterio  &  & $SOFT$ \\\hline
-		\hline
-	\end{tabular}
-	\caption{Software Dependencies.\label{tab:software_dependencies}}
-\end{table}
-
 
 \section{Communications Interfaces}
 $<$Describe the requirements associated with any communications functions 
@@ -323,6 +366,7 @@ Atmospheric correction. If yes, it remains to the filesystem, otherwise it is di
 The stimulus is a set of partitions. The response sequence is a set of accepted partitions
 
 \subsection{Functional Requirements}
+\iffalse
 $<$Itemize the detailed functional requirements associated with this feature.  
 These are the software capabilities that must be present in order for the user 
 to carry out the services provided by the feature, or to execute the use case.  
@@ -330,7 +374,7 @@ Include how the product should respond to anticipated error conditions or
 invalid inputs. Requirements should be concise, complete, unambiguous, 
 verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
 information is not yet available.$>$
-
+\fi
 \begin{itemize}
 	\item REQ 1: This stage can get a configurable number of partitions ( 1 /~ 10000)
 	\item REQ 2: Read/Write data from/to local filesystem of the node.
