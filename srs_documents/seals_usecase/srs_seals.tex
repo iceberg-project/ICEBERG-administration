@@ -305,11 +305,13 @@ The CLI interface should have the arguments based on table~\ref{tab:cli_interfac
 	\centering
 	\begin{tabular}{|p{2.5cm}|p{2.2cm}|p{1.8cm}|p{4cm}|p{2cm}|}
 		\hline
-		Argument Name    & Argument Flag(s) & Argument Type & Value & Required/ Optional\\\hline
-		Resource         & -r/--resource    & String        & xsede.bridges & Required\\\hline
-		Output Directory & -op              & String        & './'    & Optional\\\hline
-		Input Directory  & -ip              & String        & /home/iparask/images & Required\\\hline
-		Path to Model    & --model          & String        & model file & Optional\\
+		Argument Name    & Argument Flag(s)  & Argument Type & Value                & Required/ Optional\\\hline
+		Resource         & -r/--resource     & String        & xsede.bridges        & Required\\\hline
+		Output Directory & -op/--output\_dir & String        & './'                 & Optional\\\hline
+		Input Directory  & -ip/--input\_dir  & String        & /home/iparask/images & Required\\\hline
+		Path to Model    & -m/--model        & String        & model file           & Optional\\\hline
+		Walltime         & -w/--walltime     & Interger      & 60                   & Optional\\\hline
+		User Name        & -u/--username     & String        & 'iparask'            & Required\\
 		\hline
 	\end{tabular}
 	\caption{Command Line Interface Arguments.\label{tab:cli_interface}}
