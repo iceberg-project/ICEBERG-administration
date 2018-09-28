@@ -101,7 +101,7 @@ linktoc=page                                    % only page is linked
 The purpose of this document is to capture the requirements of the ICEBERG: Rivers
 Use Case. It will include functional, non-functional and User Interface requirements.
 It will be used as the reference document between the RADICAL Team and the Stony 
-Brook and UCSB teams for the Seals use case development.
+Brook and UCSB teams for the Rivers use case development.
 
 \section{Document Conventions}
 The requested features are listed in section 4 and the non-functional requirements are
@@ -383,7 +383,7 @@ associated with use cases.$>$
 \fi
 
 The stimulus of this feature will be the path to a folder where all the images 
-will exist. The response sequence is a table with the number of Seals per image.
+will exist. The response sequence is a table with the water features per image.
 
 \subsection{Functional Requirements}
 \iffalse
@@ -407,7 +407,7 @@ have the same priority unless otherwise stated.
 \item Identify the individual images that exist in a single folder
 \item Each image should have an individual output file
 \item Provide an aggregated output file for all images with two columns: Image 
-filename, number of seals
+filename, id of water feature 
 \end{enumerate}
 
 \section{Output seasons}
@@ -461,7 +461,7 @@ have the same priority unless otherwise stated.
 	\item Create an input defining a season. The images of the season are prioritized
 	over the rest of the images.\gpnote{@Brad: how do we understand which images belong to a season?}
 	\item Create a file with the results of the season with two columns: Image 
-	filename, number of seals
+	filename, id of water feature
 \end{enumerate}
 
 
