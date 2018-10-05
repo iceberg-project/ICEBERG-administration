@@ -117,10 +117,7 @@ is provided by the use case Github repository [2].
 
 
 \section{Project Scope}
-$<$Provide a short description of the software being specified and its purpose, 
-including relevant benefits, objectives, and goals. Relate the software to 
-corporate goals or business strategies. If a separate vision and scope document 
-is available, refer to it rather than duplicating its contents here.$>$
+$<$The ASIFT provide the functionality for the user to take an airborne or satellite image anywhere that we have Worldview Ortho-rectified imagery available, and where the user knows the approximate location of the photo (within ~100 km) but does not have geo-location information on it. The ASIFT Workflow be able to pin down where that photo was taken, automatically determine a likely set of geo-located ground control points for the image, and ortho-rectify the image if needed$>$
 
 \section{References}
 $<$List any other documents or Web addresses to which this SRS refers. These may 
@@ -132,6 +129,7 @@ including title, author, version number, date, and source or location.$>$
 \section{References}
 [1]~\url{https://github.com/iceberg-project/Use-Case-Descriptions/blob/master/ASIFT/Use_Case_ASIFT_Draft1_2018.03.16.docx}\newline
 [2]~\url{https://github.com/iceberg-project/ASIFT}
+[3]~\url{https://www.ipol.im/}
 
 
 % ----------------------------------------------------------------------------
@@ -214,10 +212,20 @@ The Web interface should be hosted on resources with constant operation.
 		Library & Version & Executable & Type\\\hline
 		Python        & 3.5      & All              & $SOFT$\\\hline
 		EnTK          & 0.7      & entk\_script     & $SOFT$ \\\hline
-		\hline
+		opencv-python & 3.2      & tile\_raster     & $SOFT$ \\\hline
+		gdal-python   & 2.2.1    & tile\_raster     & $SOFT$ \\\hline
+		USAC          & Any      & All              & $SOFT$ \\\hline
+		liblapack-dev & Any      & All              & $SOFT$ \\\hline
+		libblas-dev   & Any      & All              & $SOFT$ \\\hline
+		libconfig-dev & Any      & All              & $SOFT$ \\\hline
+		libconfig++   & Any      & All              & $SOFT$ \\\hline
+ 		\hline
 	\end{tabular}
 	\caption{Software Dependencies.\label{tab:software_dependencies}}
 \end{table}
+
+
+
 
 \section{Design and Implementation Constraints}
 \iffalse
@@ -231,14 +239,13 @@ customer’s organization will be responsible for maintaining the delivered
 software).$>$
 \fi
 
-Access to the VM should be through SSH. The web interface should be under HTTPS 
+Access to the VM should be through SSH or GSISSH. The web interface should be under HTTPS 
 protocol.
 
 Users should have their image data uploaded to the resources via a secure data 
 transfer system, like sftp/scp.
 
-Users should not execute from the login nodes, unless otherwise specified explicitly 
-by the resource documentation.
+Users should not execute from the login nodes instead the user should execute the job through queue system.
 
 \section{User Documentation}
 \iffalse
@@ -250,6 +257,7 @@ Users will be provided on-line documentation and help.  Syntax, options, and err
 messages will be displayed via the web or command line interfaces.
 
 \section{Assumptions and Dependencies}
+\iffalse
 $<$List any assumed factors (as opposed to known facts) that could affect the 
 requirements stated in the SRS. These could include third-party or commercial 
 components that you plan to use, issues around the development or operating 
@@ -259,7 +267,8 @@ project has on external factors, such as software components that you intend to
 reuse from another project, unless they are already documented elsewhere (for 
 example, in the vision and scope document or the project plan).$>$
 
-
+\fi
+OpenCV version 3.2.0 and GDAL v2.2.1 is assumed to be compiled and preinstalled on the resources.In order to use SIIM descriptors proposed by OpenCV and inorder to use GEOTIFF imagery. Also Python 2.7 and 3.5 should exist in the resource.
 % ----------------------------------------------------------------------------
 % Interface Requirements
 % ----------------------------------------------------------------------------
@@ -306,7 +315,8 @@ used.$>$
 \fi
 
 The software system requires High Performance Computing (HPC) resources for execution. 
-The HPC resources should provide CPU. Any XSEDE resource is a good candidate.
+The HPC resources should provide CPU and high amount of Memory(RAM). 
+Any XSEDE resource is a good candidate.
 
 \section{Software Interfaces}
 $<$Describe the connections between this product and other specific software 
