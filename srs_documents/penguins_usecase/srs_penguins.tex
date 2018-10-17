@@ -47,19 +47,20 @@
 \begin{flushright}
     \rule{16cm}{5pt}\vskip1cm
     \begin{bfseries}
-        \Huge{SOFTWARE REQUIREMENTS\\ SPECIFICATION}\\
-        \vspace{1.9cm}
-        for\\
-        \vspace{1.9cm}
-        $<$Project$>$\\
-        \vspace{1.9cm}
-        \LARGE{Version \myversion approved}\\
-        \vspace{1.9cm}
-        Prepared by $<$author$>$\\
-        \vspace{1.9cm}
-        $<$Organization$>$\\
-        \vspace{1.9cm}
-        \today\\
+    	 \Huge{SOFTWARE REQUIREMENTS\\ SPECIFICATION}\\
+    	\vspace{1.9cm}
+    	for\\
+    	\vspace{1.9cm}
+    	ICEBERG - Penguins use case\\
+    	\vspace{1.9cm}
+    	\LARGE{Version \myversion}\\
+    	\vspace{1.9cm}
+    	Prepared by Ioannis Paraskevakos\\
+    	RADICAL\\
+    	Brad Spitzbart, Hieu Le\\
+    	Stony Brook University\\
+    	\vspace{1.9cm}
+    	\today\\
     \end{bfseries}
 \end{flushright}
 
@@ -76,6 +77,7 @@
 		\hline
 		Name & Date & Reason For Changes & Version\\\hline
 		IP & 9/12/2018/ & initial & 0.1\\\hline
+		BS & 10/17/2018/ & add Scope sect 1.4 & 0.1.1\\\hline
 	\end{tabular}
 \end{center}
 
@@ -131,10 +133,18 @@ An early use case document was not provided. The current status of the project
 is provided by the use case Github repository [2].
 
 \section{Project Scope}
+\iffalse
 $<$Provide a short description of the software being specified and its purpose, 
 including relevant benefits, objectives, and goals. Relate the software to 
 corporate goals or business strategies. If a separate vision and scope document 
 is available, refer to it rather than duplicating its contents here.$>$
+\fi
+
+We provide a detection algorithm to extract the location of penguin colonies from high-resolution 
+imagery. This algorithm was developed by convolutional neural network training to 
+detect the extent of guano patches indicating penguin colonies. This is beneficial, as a penguin colony census and monitoring will provide key information on the health and evolution 
+of the Antarctic ecosystem.
+
 
 \section{References}
 [2]~\url{https://github.com/iceberg-project/Penguins}

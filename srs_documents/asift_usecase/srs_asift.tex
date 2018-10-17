@@ -117,14 +117,7 @@ is provided by the use case Github repository [2].
 
 
 \section{Project Scope}
-$<$The ASIFT provide the functionality for the user to take an airborne or satellite image anywhere that we have Worldview Ortho-rectified imagery available, and where the user knows the approximate location of the photo (within ~100 km) but does not have geo-location information on it. The ASIFT Workflow be able to pin down where that photo was taken, automatically determine a likely set of geo-located ground control points for the image, and ortho-rectify the image if needed$>$
-
-\section{References}
-$<$List any other documents or Web addresses to which this SRS refers. These may 
-include user interface style guides, contracts, standards, system requirements 
-specifications, use case documents, or a vision and scope document. Provide 
-enough information so that the reader could access a copy of each reference, 
-including title, author, version number, date, and source or location.$>$
+The ASIFT provide the functionality for the user to take an airborne or satellite image anywhere that we have Worldview Ortho-rectified imagery available, and where the user knows the approximate location of the photo (within ~100 km) but does not have geo-location information on it. The ASIFT Workflow be able to pin down where that photo was taken, automatically determine a likely set of geo-located ground control points for the image, and ortho-rectify the image if needed.
 
 \section{References}
 [1]~\url{https://github.com/iceberg-project/Use-Case-Descriptions/blob/master/ASIFT/Use_Case_ASIFT_Draft1_2018.03.16.docx}\newline
@@ -286,8 +279,8 @@ the user interface design should be documented in a separate user interface
 specification.$>$
 \fi
 
-Provide an interface where users can upload a set of images and get back a table 
-with the Seals.
+Provide an interface where users can upload an image and get back a table 
+with Ground Control Points (GCPs) and ortho-rectified image.
 
 The CLI interface should have the arguments based on table~\ref{tab:cli_interface}
 
