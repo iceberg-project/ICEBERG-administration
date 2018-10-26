@@ -79,6 +79,7 @@
         \hline
         Name & Date & Reason For Changes & Version\\\hline
         IP   & 9/12/2018 & Adding General information & 0.1\\\hline
+        AA,BS   & 10/26/2018 & Adding product functions & 0.2\\\hline
     \end{tabular}
 \end{center}
 
@@ -157,12 +158,22 @@ ICEBERG is a multi-disciplinary, cyberinfrastructure, integration project to
 \end{inparaenum}
 
 \section{Product Functions}
+\iffalse
 $<$Summarize the major functions the product must perform or must let the user 
 perform. Details will be provided in Section 3, so only a high level summary 
 (such as a bullet list) is needed here. Organize the functions to make them 
 understandable to any reader of the SRS. A picture of the major groups of 
 related requirements and how they relate, such as a top level data flow diagram 
 or object class diagram, is often effective.$>$
+\fi
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{ASIFTWorkflowDiagram.jpg}
+\end{figure}
+
+The main functions of the ASIFT pipeline are generating ground control points (GCPs), 
+quality checks (RANSAC), geo-location, ortho-rectification, and  
+producing output images.
 
 \section{User Classes and Characteristics}
 \iffalse
