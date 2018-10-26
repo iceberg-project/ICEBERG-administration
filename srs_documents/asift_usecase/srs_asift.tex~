@@ -20,17 +20,17 @@
 \usepackage{paralist}
 
 \hypersetup{
-    bookmarks=false,                                % show bookmarks bar?
-pdftitle={Software Requirement Specification},  % title
-pdfauthor={Jean-Philippe Eisenbarth},           % author
-pdfsubject={TeX and LaTeX},                     % subject of the document
-pdfkeywords={TeX, LaTeX, graphics, images},     % list of keywords
-colorlinks=true,                                % false: boxed links; true: colored links
-linkcolor=blue,                                 % color of internal links
-citecolor=black,                                % color of links to bibliography
-filecolor=black,                                % color of file links
-urlcolor=black,                                % color of external links
-linktoc=page                                    % only page is linked
+	bookmarks=false,                                % show bookmarks bar?
+	pdftitle={Software Requirement Specification},  % title
+	pdfauthor={Jean-Philippe Eisenbarth},           % author
+	pdfsubject={TeX and LaTeX},                     % subject of the document
+	pdfkeywords={TeX, LaTeX, graphics, images},     % list of keywords
+	colorlinks=true,                                % false: boxed links; true: colored links
+	linkcolor=blue,                                 % color of internal links
+	citecolor=black,                                % color of links to bibliography
+	filecolor=black,                                % color of file links
+	urlcolor=black,                                % color of external links
+	linktoc=page                                    % only page is linked
 }
 
 \def\myversion{1.0 }
@@ -50,17 +50,18 @@ linktoc=page                                    % only page is linked
         \vspace{1.9cm}
         for\\
         \vspace{1.9cm}
-        ICEBERG - LandCover use case\\
+         ICEBERG - ASIFT use case\\
         \vspace{1.9cm}
         \LARGE{Version \myversion}\\
         \vspace{1.9cm}
-        Prepared by Ioannis Paraskevakos\\
+        Prepared by Aymen Alsaadi, Ioannis Paraskevakos\\
         RADICAL\\
-	Brad Spitzbart\\
+        Brad Spitzbart\\
         Stony Brook University\\
-        Mark Salvatore, Helen Eifert\\
-        Northern Arizona University\\
-        \vspace{1cm}
+        Michael MacFerrin\\
+        University of Colorado - Boulder\\
+   
+   
         \today\\
     \end{bfseries}
 \end{flushright}
@@ -77,8 +78,7 @@ linktoc=page                                    % only page is linked
     \begin{tabular}{|c|c|c|c|}
         \hline
         Name & Date & Reason For Changes & Version\\\hline
-        Initial & 8/30/2018 & & 0.1\\\hline
-        IP & 9/12/2018 & Added common section throughout the project & 0.2\\\hline
+        IP   & 9/12/2018 & Adding General information & 0.1\\\hline
     \end{tabular}
 \end{center}
 
@@ -89,10 +89,10 @@ linktoc=page                                    % only page is linked
 \chapter{Introduction}
 
 \section{Purpose}
-The purpose of this document is to capture the requirements of the ICEBERG: Seal
+The purpose of this document is to capture the requirements of the ICEBERG: ASIFT
 Use Case. It will include functional, non-functional and User Interface requirements.
 It will be used as the reference document between the RADICAL Team and the Stony 
-Brook team for the Seals use case development.
+Brook and CU Boulder teams for the Seals use case development.
 
 \section{Document Conventions}
 The requested features are listed in section 4 and the non-functional requirements are
@@ -100,38 +100,33 @@ listed in section 5. Each of these requirements have a priority from the set {HI
 MEDIUM, LOW}. Based on the number of requirements and their priority, a timeline
 will be created with each requirement and its expected time-to-completion.
 
+
 \section{Intended Audience and Reading Suggestions}
-%$<$Describe the different types of reader that the document is intended for, 
-%such as developers, project managers, marketing staff, users, testers, and 
-%documentation writers. Describe what the rest of this SRS contains and how it is 
-%organized. Suggest a sequence for reading the document, beginning with the 
-%overview sections and proceeding through the sections that are most pertinent to 
-%each reader type.$>$
+\iffalse
+$<$Describe the different types of reader that the document is intended for, 
+such as developers, project managers, marketing staff, users, testers, and 
+documentation writers. Describe what the rest of this SRS contains and how it is 
+organized. Suggest a sequence for reading the document, beginning with the 
+overview sections and proceeding through the sections that are most pertinent to 
+each reader type.$>$
+\fi
 
 The document is edited and iterated between users and developers. It is intended
 to provide the developers as well as the project managers a complete understanding 
 of the requirements as they are expected by the users.
 
-An early use case document is provided in [1]. The current status of the project is
-provided by the use case Github repository [2].
+An early use case document is provided in [1]. The current status of the project 
+is provided by the use case Github repository [2].
+
 
 \section{Project Scope}
-\iffalse
-$<$Provide a short description of the software being specified and its purpose, 
-including relevant benefits, objectives, and goals. Relate the software to 
-corporate goals or business strategies. If a separate vision and scope document 
-is available, refer to it rather than duplicating its contents here.$>$
-\fi
-LandCover is a pipeline for automated processing of satellite imagery, automated 
-detection and removal of snow, ice, water, and shadows from the scene, automated 
-atmospheric characterization and removal, and automated ``stretching'' of the 
-scenes to provide spatial coverage of surveyed area, reasonable estimates on 
-atmospheric contributions, and comparisons to a spectral library of known geologic 
-materials.
+The ASIFT provide the functionality for the user to take an airborne or satellite image anywhere that we have Worldview Ortho-rectified imagery available, and where the user knows the approximate location of the photo (within ~100 km) but does not have geo-location information on it. The ASIFT Workflow be able to pin down where that photo was taken, automatically determine a likely set of geo-located ground control points for the image, and ortho-rectify the image if needed.
 
 \section{References}
-[1]~\url{https://github.com/iceberg-project/Use-Case-Descriptions/blob/master/LandCover/UseCase_Geology_Draft1_20171101.docx}\newline
-[2]~\url{https://github.com/iceberg-project/LandCover}
+[1]~\url{https://github.com/iceberg-project/Use-Case-Descriptions/blob/master/ASIFT/Use_Case_ASIFT_Draft1_2018.03.16.docx}\newline
+[2]~\url{https://github.com/iceberg-project/ASIFT}
+[3]~\url{https://www.ipol.im/}
+
 
 % ----------------------------------------------------------------------------
 % Overall Description
@@ -160,28 +155,14 @@ ICEBERG is a multi-disciplinary, cyberinfrastructure, integration project to
 	\item transfer these tools to the larger (non-polar) EarthCube community for 
 	continued community-driven development.
 \end{inparaenum}
+
 \section{Product Functions}
-\iffalse
 $<$Summarize the major functions the product must perform or must let the user 
 perform. Details will be provided in Section 3, so only a high level summary 
 (such as a bullet list) is needed here. Organize the functions to make them 
 understandable to any reader of the SRS. A picture of the major groups of 
 related requirements and how they relate, such as a top level data flow diagram 
 or object class diagram, is often effective.$>$
-\fi
-
-The product functions consist of a series of algorithms to calibrate multispectral 
-data from raw digital number through to spectral parameters derived from calibrated 
-surface reflectance data.  Intermediate steps include the derivation of top-of-atmosphere 
-radiance, the estimation of atmospheric contributions and their removal from the scene, 
-the calibration to surface reflectance, the removal of ``non-geological'' surfaces 
-(e.g., ice, snow, water, shadow), the parameterization of reflectance data, and the 
-``spectral unmixing'' of orbital data using a library of spectral endmembers.
-
-\begin{figure}[H]
- \centering
- \includegraphics[width=0.8\textwidth]{landcoverarch}
-\end{figure}
 
 \section{User Classes and Characteristics}
 \iffalse
@@ -225,16 +206,22 @@ The Web interface should be hosted on resources with constant operation.
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		Library & Version & Executable & Type\\\hline
-		Python        & 2.7+     & All              & $SOFT$\\\hline
-		GDSAL         & 1.11     & landcover        & $SOFT$ \\\hline
-		matplotlib    & 2.2.2    & landcover           & $SOFT$ \\\hline
-		Pillow        & 5.1.0    & landcover & $SOFT$ \\\hline
-		rasterio      & Any      & landcover & $SOFT$ \\\hline
+		Python        & 3.5      & All              & $SOFT$\\\hline
 		EnTK          & 0.7      & entk\_script     & $SOFT$ \\\hline
-		\hline
+		opencv-python & 3.2      & tile\_raster     & $SOFT$ \\\hline
+		gdal-python   & 2.2.1    & tile\_raster     & $SOFT$ \\\hline
+		USAC          & Any      & All              & $SOFT$ \\\hline
+		liblapack-dev & Any      & All              & $SOFT$ \\\hline
+		libblas-dev   & Any      & All              & $SOFT$ \\\hline
+		libconfig-dev & Any      & All              & $SOFT$ \\\hline
+		libconfig++   & Any      & All              & $SOFT$ \\\hline
+ 		\hline
 	\end{tabular}
 	\caption{Software Dependencies.\label{tab:software_dependencies}}
 \end{table}
+
+
+
 
 \section{Design and Implementation Constraints}
 \iffalse
@@ -248,15 +235,13 @@ customer’s organization will be responsible for maintaining the delivered
 software).$>$
 \fi
 
-Access to the VM should be through SSH. The web interface should be under HTTPS 
+Access to the VM should be through SSH or GSISSH. The web interface should be under HTTPS 
 protocol.
 
 Users should have their image data uploaded to the resources via a secure data 
 transfer system, like sftp/scp.
 
-Users should not execute from the login nodes, unless otherwise specified explicitly 
-by the resource documentation.
-
+Users should not execute from the login nodes instead the user should execute the job through queue system.
 
 \section{User Documentation}
 \iffalse
@@ -277,18 +262,16 @@ are incorrect, are not shared, or change. Also identify any dependencies the
 project has on external factors, such as software components that you intend to 
 reuse from another project, unless they are already documented elsewhere (for 
 example, in the vision and scope document or the project plan).$>$
+
 \fi
-
-Rasterio is assumed to be preinstalled on the resource and provided via a virtual
-environment. OMPI is installed and provided via a module for the launch method of 
-RP. Python 2.7 should exist in the resource.
-
+OpenCV version 3.2.0 and GDAL v2.2.1 is assumed to be compiled and preinstalled on the resources.In order to use SIIM descriptors proposed by OpenCV and inorder to use GEOTIFF imagery. Also Python 2.7 and 3.5 should exist in the resource.
 % ----------------------------------------------------------------------------
 % Interface Requirements
 % ----------------------------------------------------------------------------
 \chapter{External Interface Requirements}
 
 \section{User Interfaces}
+\iffalse
 $<$Describe the logical characteristics of each interface between the software 
 product and the users. This may include sample screen images, any GUI standards 
 or product family style guides that are to be followed, screen layout 
@@ -297,9 +280,10 @@ every screen, keyboard shortcuts, error message display standards, and so on.
 Define the software components for which a user interface is needed. Details of 
 the user interface design should be documented in a separate user interface 
 specification.$>$
+\fi
 
-Provide an interface where users can upload a set of images and get a set of images
-classified by landcove
+Provide an interface where users can upload an image and get back a table 
+with Ground Control Points (GCPs) and ortho-rectified image.
 
 The CLI interface should have the arguments based on table~\ref{tab:cli_interface}
 
@@ -311,23 +295,26 @@ The CLI interface should have the arguments based on table~\ref{tab:cli_interfac
 		Resource         & -r/--resource    & String        & xsede.bridges & Required\\\hline
 		Output Directory & -op              & String        & './'    & Optional\\\hline
 		Input Directory  & -ip              & String        & /home/iparask/images & Required\\\hline
-		Spectral matrix  & -s              & String        & built-in default & Optional\\\hline
+		\hline
 	\end{tabular}
 	\caption{Command Line Interface Arguments.\label{tab:cli_interface}}
 \end{table}
 
-\section{Hardware Interfaces}
-%$<$Describe the logical and physical characteristics of each interface between 
-%the software product and the hardware components of the system. This may include 
-%the supported device types, the nature of the data and control interactions 
-%between the software and the hardware, and communication protocols to be 
-%used.$>$
 
-The software system requires High Performance Computing (HPC) resources for execution.
-The HPC resources should provide CPU node. Any XSEDE resource is a good candicate.
+\section{Hardware Interfaces}
+\iffalse
+$<$Describe the logical and physical characteristics of each interface between 
+the software product and the hardware components of the system. This may include 
+the supported device types, the nature of the data and control interactions 
+between the software and the hardware, and communication protocols to be 
+used.$>$
+\fi
+
+The software system requires High Performance Computing (HPC) resources for execution. 
+The HPC resources should provide CPU and high amount of Memory(RAM). 
+Any XSEDE resource is a good candidate.
 
 \section{Software Interfaces}
-\iffalse
 $<$Describe the connections between this product and other specific software 
 components (name and version), including databases, operating systems, tools, 
 libraries, and integrated commercial components. Identify the data items or 
@@ -338,7 +325,6 @@ Identify data that will be shared across software components. If the data
 sharing mechanism must be implemented in a specific way (for example, use of a 
 global data area in a multitasking operating system), specify this as an 
 implementation constraint.$>$
-\fi
 
 \section{Communications Interfaces}
 $<$Describe the requirements associated with any communications functions 
@@ -359,43 +345,15 @@ prefer to organize this section by use case, mode of operation, user class,
 object class, functional hierarchy, or combinations of these, whatever makes the 
 most logical sense for your product.$>$
 
-\section{Selecting Parts of the Image for Atmospheric Correction}
+\section{System Feature 1}
+$<$Don’t really say “System Feature 1.” State the feature name in just a few 
+words.$>$
 
-\subsection{Description}
-As the image is partitioned, each partition is checked whether or not it will be used for the
-Atmospheric correction. If yes, it remains to the filesystem, otherwise it is discarded and removed.
-
-\subsection{Stimulus/Response Sequences}
-The stimulus is a set of partitions. The response sequence is a set of accepted partitions
-
-\subsection{Functional Requirements}
-\iffalse
-$<$Itemize the detailed functional requirements associated with this feature.  
-These are the software capabilities that must be present in order for the user 
-to carry out the services provided by the feature, or to execute the use case.  
-Include how the product should respond to anticipated error conditions or 
-invalid inputs. Requirements should be concise, complete, unambiguous, 
-verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
-information is not yet available.$>$
-\fi
-\begin{itemize}
-	\item REQ 1: This stage can get a configurable number of partitions ( 1 /~ 10000)
-	\item REQ 2: Read/Write data from/to local filesystem of the node.
-	\item REQ 3: Memory usage per task should be below 4096 MBs.
-\end{itemize}
-
-\iffalse
-\section{Calibrate to top-of-atmosphere radiance}
-%\subsection{Description and Priority}
-\subsection{Description}
-\iffalse
+\subsection{Description and Priority}
 $<$Provide a short description of the feature and indicate whether it is of 
 High, Medium, or Low priority. You could also include specific priority 
 component ratings, such as benefit, penalty, cost, and risk (each rated on a 
 relative scale from a low of 1 to a high of 9).$>$
-\fi
-Input multispectral data, calibrate to top-of-atmosphere radiance using ABSCALFACTOR and EFFECTIVEBANDWIDTH parameters 
-drawn from image metadata file. 
 
 \subsection{Stimulus/Response Sequences}
 $<$List the sequences of user actions and system responses that stimulate the 
@@ -416,116 +374,10 @@ meaningful tag of some kind.$>$
 
 REQ-1:  REQ-2:
 
-\section{Calculate surface reflectance by automatically applying an atmospheric correction algorithm}
-\subsection{Description}
-\begin{enumerate}
-	\item Identify spectrally homogeneous regions with varying surface illumination 
-		and shadowing
-	\item Collect ~200 spectra from these locations, ensuring that you are only 
-		cataloging variations in brightness (due to illumination) and not variations 
-		due to variable surface composition or other chemical/physical properties
-	\item Regress a line through these data at each band relative to Band 8, deriving a 
-		Y-intercept for each regression, which predicts the radiance value for each 
-		band when completely in shadow (attributed solely to atmospheric scattering)
-	\item Subtract these Y-intercept values from each image band to calculate surface 
-		radiance (atmosphere removed) from top-of-atmosphere radiance
-\end{enumerate}
-
-
-\subsection{Stimulus/Response Sequences}
-$<$List the sequences of user actions and system responses that stimulate the 
-behavior defined for this feature. These will correspond to the dialog elements 
-associated with use cases.$>$
-
-\subsection{Functional Requirements}
-$<$Itemize the detailed functional requirements associated with this feature.  
-These are the software capabilities that must be present in order for the user 
-to carry out the services provided by the feature, or to execute the use case.  
-Include how the product should respond to anticipated error conditions or 
-invalid inputs. Requirements should be concise, complete, unambiguous, 
-verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
-information is not yet available.$>$
-
-$<$Each requirement should be uniquely identified with a sequence number or a 
-meaningful tag of some kind.$>$
-
-REQ-1:  REQ-2:
-
-
-\section{Convert to surface reflectance}
-\subsection{Description}
-Use data from uploaded tables (Earth-Sun distance, ESUN values) to calibrate from surface 
-radiance to surface reflectance
-
-\section{Remove non-geological surfaces using derived spectral values (optional)}
-\subsection{Description}
-\begin{enumerate}
-	\item Linearly ``unmix'' the image with a series of spectra from a given library that 
-		will include ice, snow, and shadowed and illuminated rock surfaces
-	\item Pixels meeting some threshold of non-illuminated geologic rock surfaces will 
-		be removed from the scene, leaving behind only illuminated rocky surfaces to be characterized geologically
-\end{enumerate}
-\textit{OR, a shadow removal method to be determined}
-
-\subsection{Stimulus/Response Sequences}
-$<$List the sequences of user actions and system responses that stimulate the 
-behavior defined for this feature. These will correspond to the dialog elements 
-associated with use cases.$>$
-
-\subsection{Functional Requirements}
-$<$Itemize the detailed functional requirements associated with this feature.  
-These are the software capabilities that must be present in order for the user 
-to carry out the services provided by the feature, or to execute the use case.  
-Include how the product should respond to anticipated error conditions or 
-invalid inputs. Requirements should be concise, complete, unambiguous, 
-verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
-information is not yet available.$>$
-
-$<$Each requirement should be uniquely identified with a sequence number or a 
-meaningful tag of some kind.$>$
-
-REQ-1:  REQ-2:
-
-\section{Classify land cover geological composition}
-\subsection{Description}
-\begin{enumerate}
-	\item Parameterize spectral data into known parameter mapping products
-		
-     		\begin{enumerate}
-		\item Generate simple spectral ratios and parameter products that 
-			can be tied to known geologic and geochemical phenomena
-		\item Relative values of these parameters can be used to understand the 
-			distribution of mafic compositions, oxidative weathering, and other 
-				surface properties
-		\end{enumerate}
-	\item Linearly ``unmix'' these illuminated geological surfaces using a 
-		different endmember library, derived automatically from a library 
-		of hundreds of samples based on which library data were derived from 
-		a latitude/longitude contained within the scene, assigning each pixel
-		a percentage of specifi rock types
-\end{enumerate}
-
-\subsection{Stimulus/Response Sequences}
-$<$List the sequences of user actions and system responses that stimulate the 
-behavior defined for this feature. These will correspond to the dialog elements 
-associated with use cases.$>$
-
-\subsection{Functional Requirements}
-$<$Itemize the detailed functional requirements associated with this feature.  
-These are the software capabilities that must be present in order for the user 
-to carry out the services provided by the feature, or to execute the use case.  
-Include how the product should respond to anticipated error conditions or 
-invalid inputs. Requirements should be concise, complete, unambiguous, 
-verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
-information is not yet available.$>$
-
-$<$Each requirement should be uniquely identified with a sequence number or a 
-meaningful tag of some kind.$>$
-
-REQ-1:  REQ-2:
-\fi
+\section{System Feature 2 (and so on)}
 
 \input{../non-functional-req.tex}
+
 
 \iffalse
 % ----------------------------------------------------------------------------
