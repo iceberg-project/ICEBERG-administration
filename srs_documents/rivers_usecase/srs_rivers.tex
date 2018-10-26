@@ -70,6 +70,8 @@ linktoc=page                                    % only page is linked
         RADICAL\\
 	Brad Spitzbart\\
         Stony Brook University\\
+        Vena Chu\\
+        UC Santa Barbara\\
         \vspace{1.9cm}
         \today\\
     \end{bfseries}
@@ -88,6 +90,7 @@ linktoc=page                                    % only page is linked
         \hline
         Name & Date & Reason For Changes & Version\\\hline
         Initial & 9/28/2018 & & 0.1\\\hline
+        Chu & 10/26/2018 & & 0.12\\\hline
     \end{tabular}
 \end{center}
 
@@ -131,8 +134,12 @@ including relevant benefits, objectives, and goals. Relate the software to
 corporate goals or business strategies. If a separate vision and scope document 
 is available, refer to it rather than duplicating its contents here.$>$
 \fi
-We provide a detection algorithm to extract the location of water features from high-resolution 
-imagery. 
+ 
+We provide a classification algorithm for ice surface features from high-resolution imagery. 
+This algorithm was developed by convolutional neural network training to detect regions of large 
+and small rivers and to distinguish them from crevasses and non-channelized slush. We also provide 
+a detection algorithm to extract polyline water features from the classified high-probability river 
+areas.
 
 \section{References}
 [1]~\url{https://github.com/iceberg-project/Rivers/blob/master/HOWTO_StreamExtraction.txt} \newline
@@ -176,7 +183,10 @@ related requirements and how they relate, such as a top level data flow diagram
 or object class diagram, is often effective.$>$
 \fi
 
-The main functions of the Rivers pipeline are conversion of orthorectified imagery into NDWI: Normalized difference water index images, extracting large stream profiles, and extracting lake profiles.
+The main functions of the Rivers pipeline are conversion of orthorectified imagery into
+classified ice surface features including: Rivers (large rivers and lakes), Streams (small rivers),
+Crevasses, Slush. The Rivers and Streams class will mask areas for producing NDWI: Normalized
+difference water index images, extracting large stream profiles, and extracting lake profiles.
 
 \section{User Classes and Characteristics}
 \iffalse
@@ -327,6 +337,7 @@ and needs at least one GPU. The HPC resources should provide CPU and GPU node.
 Until now, PSC Bridges and SDSC Comet are the possible candidates.
 
 \section{Software Interfaces}
+\iffalse
 $<$Describe the connections between this product and other specific software 
 components (name and version), including databases, operating systems, tools, 
 libraries, and integrated commercial components. Identify the data items or 
@@ -337,32 +348,39 @@ Identify data that will be shared across software components. If the data
 sharing mechanism must be implemented in a specific way (for example, use of a 
 global data area in a multitasking operating system), specify this as an 
 implementation constraint.$>$
-
+\fi
+None at this time.
 
 \section{Communications Interfaces}
+\iffalse
 $<$Describe the requirements associated with any communications functions 
 required by this product, including e-mail, web browser, network server 
 communications protocols, electronic forms, and so on. Define any pertinent 
 message formatting. Identify any communication standards that will be used, such 
 as FTP or HTTP. Specify any communication security or encryption issues, data 
 transfer rates, and synchronization mechanisms.$>$
-
+\fi
+None at this time.
 % ----------------------------------------------------------------------------
 % Functional Requirements
 % ----------------------------------------------------------------------------
 \chapter{System Features}
+\iffalse
 $<$This template illustrates organizing the functional requirements for the 
 product by system features, the major services provided by the product. You may 
 prefer to organize this section by use case, mode of operation, user class, 
 object class, functional hierarchy, or combinations of these, whatever makes the 
 most logical sense for your product.$>$
-
-\section{Analyzing images in bulk}
+\fi
+This section describes the features of the Rivers use case. Each feature has a
+description, its stimulus---its input sequence or event, response sequence, and
+its functional requirements.
+\section{Classifying images in bulk}
 \iffalse
 $<$Don’t really say “System Feature 1.” State the feature name in just a few 
 words.$>$
 \fi
-\subsection{Description and Priority}
+\subsection{Description}
 \iffalse
 $<$Provide a short description of the feature and indicate whether it is of 
 High, Medium, or Low priority. You could also include specific priority 
@@ -373,8 +391,6 @@ relative scale from a low of 1 to a high of 9).$>$
 The Rivers component should take as an input a set of images. These images will be
 organized in a single folder. Each analysis is independent of each other.
 
-Priority: 9
-
 \subsection{Stimulus/Response Sequences}
 \iffalse
 $<$List the sequences of user actions and system responses that stimulate the 
@@ -382,8 +398,9 @@ behavior defined for this feature. These will correspond to the dialog elements
 associated with use cases.$>$
 \fi
 
-The stimulus of this feature will be the path to a folder where all the images 
-will exist. The response sequence is a table with the water features per image.
+The stimulus of this feature will be the path to a folder where all the images will exist. 
+The response sequence is a set of rasters (one of each feature class) indicating the 
+probabilities of each feature class
 
 \subsection{Functional Requirements}
 \iffalse
@@ -404,11 +421,108 @@ have the same priority unless otherwise stated.
 
 
 \begin{enumerate}[REQ-1:]
-\item Identify the individual images that exist in a single folder
-\item Each image should have an individual output file
-\item Provide an aggregated output file for all images with two columns: Image 
-filename, id of water feature 
+\item Identify the individual images that exist in a single folder.
+\item Each image should have an individual set of output raster files (one for each feature class) indicating class probabilities.
 \end{enumerate}
+
+\section{Extracting river and stream centerlines}
+\iffalse
+$<$Don’t really say “System Feature 1.” State the feature name in just a few 
+words.$>$
+\fi
+
+\subsection{Description}
+\iffalse
+$<$Provide a short description of the feature and indicate whether it is of 
+High, Medium, or Low priority. You could also include specific priority 
+component ratings, such as benefit, penalty, cost, and risk (each rated on a 
+relative scale from a low of 1 to a high of 9).$>$
+\fi
+
+The Rivers component should take as an input a set of images and the associated raster 
+probabilities for the Rivers and Streams classes. Each analysis is independent of each other.
+
+\subsection{Stimulus/Response Sequences}
+\iffalse
+$<$List the sequences of user actions and system responses that stimulate the 
+behavior defined for this feature. These will correspond to the dialog elements 
+associated with use cases.$>$
+\fi
+The stimulus of this feature will be the path to a folder where all the images will exist, and another path to the feature class raster probabilities. The response sequence is a set of shapefiles of River and Stream polylines.
+
+\subsection{Functional Requirements}
+\iffalse
+$<$Itemize the detailed functional requirements associated with this feature.  
+These are the software capabilities that must be present in order for the user 
+to carry out the services provided by the feature, or to execute the use case.  
+Include how the product should respond to anticipated error conditions or 
+invalid inputs. Requirements should be concise, complete, unambiguous, 
+verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
+information is not yet available.$>$
+
+$<$Each requirement should be uniquely identified with a sequence number or a 
+meaningful tag of some kind.$>$
+\fi
+
+The following list displays the requirements of this feature. All requirements
+have the same priority unless otherwise stated. 
+
+
+\begin{enumerate}[REQ-1:]
+	\item Identify the individual images that exist in a single folder, and their associated Rivers and Streams raster probabilities existing in two other folders.
+	\item Convert images to NDWI and perform linear feature extraction in high probability areas of Rivers and Streams.
+	\item Each image should have an individual output shapefile with attributes indicating a River polyline segment or a Stream polyline segment
+\end{enumerate}
+
+\section{Extracting lake polygons}
+\iffalse
+$<$Don’t really say “System Feature 1.” State the feature name in just a few 
+words.$>$
+\fi
+
+\subsection{Description}
+\iffalse
+$<$Provide a short description of the feature and indicate whether it is of 
+High, Medium, or Low priority. You could also include specific priority 
+component ratings, such as benefit, penalty, cost, and risk (each rated on a 
+relative scale from a low of 1 to a high of 9).$>$
+\fi
+The Lakes component should take as an input a set of images and the associated raster probabilities for the Rivers class. 
+Each analysis is independent of each other.
+
+\subsection{Stimulus/Response Sequences}
+\iffalse
+$<$List the sequences of user actions and system responses that stimulate the 
+behavior defined for this feature. These will correspond to the dialog elements 
+associated with use cases.$>$
+\fi
+
+The stimulus of this feature will be the path to a folder where all the images will exist. The response sequence is a set of rasters (one of each feature class) indicating the probabilities of each feature class.
+
+\subsection{Functional Requirements}
+\iffalse
+$<$Itemize the detailed functional requirements associated with this feature.  
+These are the software capabilities that must be present in order for the user 
+to carry out the services provided by the feature, or to execute the use case.  
+Include how the product should respond to anticipated error conditions or 
+invalid inputs. Requirements should be concise, complete, unambiguous, 
+verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
+information is not yet available.$>$
+
+$<$Each requirement should be uniquely identified with a sequence number or a 
+meaningful tag of some kind.$>$
+\fi
+
+The following list displays the requirements of this feature. All requirements
+have the same priority unless otherwise stated. 
+
+
+\begin{enumerate}[REQ-1:]
+	\item Identify the individual images that exist in a single folder, and their associated Rivers raster probabilities existing in another folder.
+	\item Convert images to NDWI and perform lake polygon extraction using high probability areas of Rivers.
+	\item Each image should have an individual output shapefile of lake polygons.
+\end{enumerate}
+
 
 \section{Output seasons}
 \iffalse
